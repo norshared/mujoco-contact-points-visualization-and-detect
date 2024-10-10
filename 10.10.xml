@@ -1,0 +1,667 @@
+<!--?xml version="3.0" encoding="utf-8"?-->
+<mujoco model="FullBodyModel_MuscleActuatedLowerLimb_TorqueActuatedUpperBody">
+  <compiler inertiafromgeom="auto"  angle="radian" balanceinertia="true" boundmass="0.001" boundinertia="0.001">
+    <!--inertiafromgeom  Auto：使用定义的质量，没有定义的质量采用默认的 true:全部采用默认质量密度和惯性，定义的质量无效 False：只能且必须指定值-->
+    <!--balanceinertia true:帮你把对角惯量矩阵的违反约束条件的元素改为正常元素-->
+    <!--boundmass ：所有物体的质量有个下限0.001-->
+    <!--boundinertia ：所有物体的惯性有个下限0.001-->
+    <lengthrange inttotal="50" useexisting="true" timestep="0.01"></lengthrange>
+ 
+    <!--inttotal ：actuator在50s内达到稳定 即完成行程-->
+    <!--useexisting ：使用定义的actuator行程范围，没有定义的范围采用默认的-->
+  </compiler>
+  <default>
+    <joint limited="auto" damping="0.5" armature="0.1" stiffness="2"></joint>
+     <!--joint limited true ：所有关节采用统一限制，即线性阻尼0.5，转动惯量0.1，刚度为2-->
+    <geom rgba="0.8 0.8 0.8 1" margin="0.001"></geom>
+     <!--geom margin:距离低于1mm的两个geom被视为接触，但是约束阻抗的计算是 约束距离=两者距离distance-margin+gap  -->
+    <site size="0.002"></site>
+    <tendon width="0.05" rgba=".95 .3 .3 1" limited="false"></tendon>
+    <!--tendon limited false：所有肌腱没有限制，必须自己指定-->
+    <default class="muscle">
+      <muscle ctrllimited="true" ctrlrange="0 1" scale="200"></muscle>
+     <!--class 叫做muscle， 下面的muscle ：actuator中叫muscle的类即肌肉驱动器， ctrllimited true:-全部钳位至range-0到57度
+       scale：为actuator设置拉动更大力量的峰值力两百 -->
+    </default>
+    <default class="motor">
+      <general gainprm="5 0 0 0 0 0 0 0 0 0"></general>
+        <!--叫做motor的通用驱动器，增益参数为5-->
+    </default>
+  </default>
+  <option timestep="0.02"></option>
+      <!--时间步长0.02，0.02s step一次-->
+    <visual>
+    <headlight ambient="0.5 0.5 0.5"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global offwidth="800" offheight="800"/>
+  </visual>
+  <worldbody >
+          <site name='x' pos='-0.05 -0.02 -0.05' rgba="1 0 0 1"/>
+      <site name='1' pos='-0.05 -0.02 -0.05'/>
+<site name='2' pos='-0.03111111111111111 -0.018 -0.04'/>
+<site name='3' pos='-0.022222222222222223 -0.018 -0.04'/>
+<site name='4' pos='-0.013333333333333336 -0.018 -0.04'/>
+<site name='5' pos='-0.004444444444444445 -0.018 -0.04'/>
+<site name='6' pos='0.004444444444444445 -0.018 -0.04'/>
+<site name='7' pos='0.013333333333333329 -0.018 -0.04'/>
+<site name='8' pos='0.02222222222222222 -0.018 -0.04'/>
+<site name='9' pos='0.03111111111111111 -0.018 -0.04'/>
+<site name='10' pos='0.04 -0.018 -0.04'/>
+<site name='11' pos='-0.04 -0.018 -0.035789473684210524'/>
+<site name='12' pos='-0.03111111111111111 -0.018 -0.035789473684210524'/>
+<site name='13' pos='-0.022222222222222223 -0.018 -0.035789473684210524'/>
+<site name='14' pos='-0.013333333333333336 -0.018 -0.035789473684210524'/>
+<site name='15' pos='-0.004444444444444445 -0.018 -0.035789473684210524'/>
+<site name='16' pos='0.004444444444444445 -0.018 -0.035789473684210524'/>
+<site name='17' pos='0.013333333333333329 -0.018 -0.035789473684210524'/>
+<site name='18' pos='0.02222222222222222 -0.018 -0.035789473684210524'/>
+<site name='19' pos='0.03111111111111111 -0.018 -0.035789473684210524'/>
+<site name='20' pos='0.04 -0.018 -0.035789473684210524'/>
+<site name='21' pos='-0.04 -0.018 -0.031578947368421054'/>
+<site name='22' pos='-0.03111111111111111 -0.018 -0.031578947368421054'/>
+<site name='23' pos='-0.022222222222222223 -0.018 -0.031578947368421054'/>
+<site name='24' pos='-0.013333333333333336 -0.018 -0.031578947368421054'/>
+<site name='25' pos='-0.004444444444444445 -0.018 -0.031578947368421054'/>
+<site name='26' pos='0.004444444444444445 -0.018 -0.031578947368421054'/>
+<site name='27' pos='0.013333333333333329 -0.018 -0.031578947368421054'/>
+<site name='28' pos='0.02222222222222222 -0.018 -0.031578947368421054'/>
+<site name='29' pos='0.03111111111111111 -0.018 -0.031578947368421054'/>
+<site name='30' pos='0.04 -0.018 -0.031578947368421054'/>
+<site name='31' pos='-0.04 -0.018 -0.02736842105263158'/>
+<site name='32' pos='-0.03111111111111111 -0.018 -0.02736842105263158'/>
+<site name='33' pos='-0.022222222222222223 -0.018 -0.02736842105263158'/>
+<site name='34' pos='-0.013333333333333336 -0.018 -0.02736842105263158'/>
+<site name='35' pos='-0.004444444444444445 -0.018 -0.02736842105263158'/>
+<site name='36' pos='0.004444444444444445 -0.018 -0.02736842105263158'/>
+<site name='37' pos='0.013333333333333329 -0.018 -0.02736842105263158'/>
+<site name='38' pos='0.02222222222222222 -0.018 -0.02736842105263158'/>
+<site name='39' pos='0.03111111111111111 -0.018 -0.02736842105263158'/>
+<site name='40' pos='0.04 -0.018 -0.02736842105263158'/>
+<site name='41' pos='-0.04 -0.018 -0.023157894736842106'/>
+<site name='42' pos='-0.03111111111111111 -0.018 -0.023157894736842106'/>
+<site name='43' pos='-0.022222222222222223 -0.018 -0.023157894736842106'/>
+<site name='44' pos='-0.013333333333333336 -0.018 -0.023157894736842106'/>
+<site name='45' pos='-0.004444444444444445 -0.018 -0.023157894736842106'/>
+<site name='46' pos='0.004444444444444445 -0.018 -0.023157894736842106'/>
+<site name='47' pos='0.013333333333333329 -0.018 -0.023157894736842106'/>
+<site name='48' pos='0.02222222222222222 -0.018 -0.023157894736842106'/>
+<site name='49' pos='0.03111111111111111 -0.018 -0.023157894736842106'/>
+<site name='50' pos='0.04 -0.018 -0.023157894736842106'/>
+<site name='51' pos='-0.04 -0.018 -0.018947368421052633'/>
+<site name='52' pos='-0.03111111111111111 -0.018 -0.018947368421052633'/>
+<site name='53' pos='-0.022222222222222223 -0.018 -0.018947368421052633'/>
+<site name='54' pos='-0.013333333333333336 -0.018 -0.018947368421052633'/>
+<site name='55' pos='-0.004444444444444445 -0.018 -0.018947368421052633'/>
+<site name='56' pos='0.004444444444444445 -0.018 -0.018947368421052633'/>
+<site name='57' pos='0.013333333333333329 -0.018 -0.018947368421052633'/>
+<site name='58' pos='0.02222222222222222 -0.018 -0.018947368421052633'/>
+<site name='59' pos='0.03111111111111111 -0.018 -0.018947368421052633'/>
+<site name='60' pos='0.04 -0.018 -0.018947368421052633'/>
+<site name='61' pos='-0.04 -0.018 -0.01473684210526316'/>
+<site name='62' pos='-0.03111111111111111 -0.018 -0.01473684210526316'/>
+<site name='63' pos='-0.022222222222222223 -0.018 -0.01473684210526316'/>
+<site name='64' pos='-0.013333333333333336 -0.018 -0.01473684210526316'/>
+<site name='65' pos='-0.004444444444444445 -0.018 -0.01473684210526316'/>
+<site name='66' pos='0.004444444444444445 -0.018 -0.01473684210526316'/>
+<site name='67' pos='0.013333333333333329 -0.018 -0.01473684210526316'/>
+<site name='68' pos='0.02222222222222222 -0.018 -0.01473684210526316'/>
+<site name='69' pos='0.03111111111111111 -0.018 -0.01473684210526316'/>
+<site name='70' pos='0.04 -0.018 -0.01473684210526316'/>
+<site name='71' pos='-0.04 -0.018 -0.010526315789473686'/>
+<site name='72' pos='-0.03111111111111111 -0.018 -0.010526315789473686'/>
+<site name='73' pos='-0.022222222222222223 -0.018 -0.010526315789473686'/>
+<site name='74' pos='-0.013333333333333336 -0.018 -0.010526315789473686'/>
+<site name='75' pos='-0.004444444444444445 -0.018 -0.010526315789473686'/>
+<site name='76' pos='0.004444444444444445 -0.018 -0.010526315789473686'/>
+<site name='77' pos='0.013333333333333329 -0.018 -0.010526315789473686'/>
+<site name='78' pos='0.02222222222222222 -0.018 -0.010526315789473686'/>
+<site name='79' pos='0.03111111111111111 -0.018 -0.010526315789473686'/>
+<site name='80' pos='0.04 -0.018 -0.010526315789473686'/>
+<site name='81' pos='-0.04 -0.018 -0.006315789473684212'/>
+<site name='82' pos='-0.03111111111111111 -0.018 -0.006315789473684212'/>
+<site name='83' pos='-0.022222222222222223 -0.018 -0.006315789473684212'/>
+<site name='84' pos='-0.013333333333333336 -0.018 -0.006315789473684212'/>
+<site name='85' pos='-0.004444444444444445 -0.018 -0.006315789473684212'/>
+<site name='86' pos='0.004444444444444445 -0.018 -0.006315789473684212'/>
+<site name='87' pos='0.013333333333333329 -0.018 -0.006315789473684212'/>
+<site name='88' pos='0.02222222222222222 -0.018 -0.006315789473684212'/>
+<site name='89' pos='0.03111111111111111 -0.018 -0.006315789473684212'/>
+<site name='90' pos='0.04 -0.018 -0.006315789473684212'/>
+<site name='91' pos='-0.04 -0.018 -0.002105263157894742'/>
+<site name='92' pos='-0.03111111111111111 -0.018 -0.002105263157894742'/>
+<site name='93' pos='-0.022222222222222223 -0.018 -0.002105263157894742'/>
+<site name='94' pos='-0.013333333333333336 -0.018 -0.002105263157894742'/>
+<site name='95' pos='-0.004444444444444445 -0.018 -0.002105263157894742'/>
+<site name='96' pos='0.004444444444444445 -0.018 -0.002105263157894742'/>
+<site name='97' pos='0.013333333333333329 -0.018 -0.002105263157894742'/>
+<site name='98' pos='0.02222222222222222 -0.018 -0.002105263157894742'/>
+<site name='99' pos='0.03111111111111111 -0.018 -0.002105263157894742'/>
+<site name='100' pos='0.04 -0.018 -0.002105263157894742'/>
+<site name='101' pos='-0.04 -0.018 0.002105263157894735'/>
+<site name='102' pos='-0.03111111111111111 -0.018 0.002105263157894735'/>
+<site name='103' pos='-0.022222222222222223 -0.018 0.002105263157894735'/>
+<site name='104' pos='-0.013333333333333336 -0.018 0.002105263157894735'/>
+<site name='105' pos='-0.004444444444444445 -0.018 0.002105263157894735'/>
+<site name='106' pos='0.004444444444444445 -0.018 0.002105263157894735'/>
+<site name='107' pos='0.013333333333333329 -0.018 0.002105263157894735'/>
+<site name='108' pos='0.02222222222222222 -0.018 0.002105263157894735'/>
+<site name='109' pos='0.03111111111111111 -0.018 0.002105263157894735'/>
+<site name='110' pos='0.04 -0.018 0.002105263157894735'/>
+<site name='111' pos='-0.04 -0.018 0.006315789473684212'/>
+<site name='112' pos='-0.03111111111111111 -0.018 0.006315789473684212'/>
+<site name='113' pos='-0.022222222222222223 -0.018 0.006315789473684212'/>
+<site name='114' pos='-0.013333333333333336 -0.018 0.006315789473684212'/>
+<site name='115' pos='-0.004444444444444445 -0.018 0.006315789473684212'/>
+<site name='116' pos='0.004444444444444445 -0.018 0.006315789473684212'/>
+<site name='117' pos='0.013333333333333329 -0.018 0.006315789473684212'/>
+<site name='118' pos='0.02222222222222222 -0.018 0.006315789473684212'/>
+<site name='119' pos='0.03111111111111111 -0.018 0.006315789473684212'/>
+<site name='120' pos='0.04 -0.018 0.006315789473684212'/>
+<site name='121' pos='-0.04 -0.018 0.010526315789473682'/>
+<site name='122' pos='-0.03111111111111111 -0.018 0.010526315789473682'/>
+<site name='123' pos='-0.022222222222222223 -0.018 0.010526315789473682'/>
+<site name='124' pos='-0.013333333333333336 -0.018 0.010526315789473682'/>
+<site name='125' pos='-0.004444444444444445 -0.018 0.010526315789473682'/>
+<site name='126' pos='0.004444444444444445 -0.018 0.010526315789473682'/>
+<site name='127' pos='0.013333333333333329 -0.018 0.010526315789473682'/>
+<site name='128' pos='0.02222222222222222 -0.018 0.010526315789473682'/>
+<site name='129' pos='0.03111111111111111 -0.018 0.010526315789473682'/>
+<site name='130' pos='0.04 -0.018 0.010526315789473682'/>
+<site name='131' pos='-0.04 -0.018 0.014736842105263152'/>
+<site name='132' pos='-0.03111111111111111 -0.018 0.014736842105263152'/>
+<site name='133' pos='-0.022222222222222223 -0.018 0.014736842105263152'/>
+<site name='134' pos='-0.013333333333333336 -0.018 0.014736842105263152'/>
+<site name='135' pos='-0.004444444444444445 -0.018 0.014736842105263152'/>
+<site name='136' pos='0.004444444444444445 -0.018 0.014736842105263152'/>
+<site name='137' pos='0.013333333333333329 -0.018 0.014736842105263152'/>
+<site name='138' pos='0.02222222222222222 -0.018 0.014736842105263152'/>
+<site name='139' pos='0.03111111111111111 -0.018 0.014736842105263152'/>
+<site name='140' pos='0.04 -0.018 0.014736842105263152'/>
+<site name='141' pos='-0.04 -0.018 0.01894736842105263'/>
+<site name='142' pos='-0.03111111111111111 -0.018 0.01894736842105263'/>
+<site name='143' pos='-0.022222222222222223 -0.018 0.01894736842105263'/>
+<site name='144' pos='-0.013333333333333336 -0.018 0.01894736842105263'/>
+<site name='145' pos='-0.004444444444444445 -0.018 0.01894736842105263'/>
+<site name='146' pos='0.004444444444444445 -0.018 0.01894736842105263'/>
+<site name='147' pos='0.013333333333333329 -0.018 0.01894736842105263'/>
+<site name='148' pos='0.02222222222222222 -0.018 0.01894736842105263'/>
+<site name='149' pos='0.03111111111111111 -0.018 0.01894736842105263'/>
+<site name='150' pos='0.04 -0.018 0.01894736842105263'/>
+<site name='151' pos='-0.04 -0.018 0.023157894736842106'/>
+<site name='152' pos='-0.03111111111111111 -0.018 0.023157894736842106'/>
+<site name='153' pos='-0.022222222222222223 -0.018 0.023157894736842106'/>
+<site name='154' pos='-0.013333333333333336 -0.018 0.023157894736842106'/>
+<site name='155' pos='-0.004444444444444445 -0.018 0.023157894736842106'/>
+<site name='156' pos='0.004444444444444445 -0.018 0.023157894736842106'/>
+<site name='157' pos='0.013333333333333329 -0.018 0.023157894736842106'/>
+<site name='158' pos='0.02222222222222222 -0.018 0.023157894736842106'/>
+<site name='159' pos='0.03111111111111111 -0.018 0.023157894736842106'/>
+<site name='160' pos='0.04 -0.018 0.023157894736842106'/>
+<site name='161' pos='-0.04 -0.018 0.027368421052631577'/>
+<site name='162' pos='-0.03111111111111111 -0.018 0.027368421052631577'/>
+<site name='163' pos='-0.022222222222222223 -0.018 0.027368421052631577'/>
+<site name='164' pos='-0.013333333333333336 -0.018 0.027368421052631577'/>
+<site name='165' pos='-0.004444444444444445 -0.018 0.027368421052631577'/>
+<site name='166' pos='0.004444444444444445 -0.018 0.027368421052631577'/>
+<site name='167' pos='0.013333333333333329 -0.018 0.027368421052631577'/>
+<site name='168' pos='0.02222222222222222 -0.018 0.027368421052631577'/>
+<site name='169' pos='0.03111111111111111 -0.018 0.027368421052631577'/>
+<site name='170' pos='0.04 -0.018 0.027368421052631577'/>
+<site name='171' pos='-0.04 -0.018 0.03157894736842105'/>
+<site name='172' pos='-0.03111111111111111 -0.018 0.03157894736842105'/>
+<site name='173' pos='-0.022222222222222223 -0.018 0.03157894736842105'/>
+<site name='174' pos='-0.013333333333333336 -0.018 0.03157894736842105'/>
+<site name='175' pos='-0.004444444444444445 -0.018 0.03157894736842105'/>
+<site name='176' pos='0.004444444444444445 -0.018 0.03157894736842105'/>
+<site name='177' pos='0.013333333333333329 -0.018 0.03157894736842105'/>
+<site name='178' pos='0.02222222222222222 -0.018 0.03157894736842105'/>
+<site name='179' pos='0.03111111111111111 -0.018 0.03157894736842105'/>
+<site name='180' pos='0.04 -0.018 0.03157894736842105'/>
+<site name='181' pos='-0.04 -0.018 0.03578947368421052'/>
+<site name='182' pos='-0.03111111111111111 -0.018 0.03578947368421052'/>
+<site name='183' pos='-0.022222222222222223 -0.018 0.03578947368421052'/>
+<site name='184' pos='-0.013333333333333336 -0.018 0.03578947368421052'/>
+<site name='185' pos='-0.004444444444444445 -0.018 0.03578947368421052'/>
+<site name='186' pos='0.004444444444444445 -0.018 0.03578947368421052'/>
+<site name='187' pos='0.013333333333333329 -0.018 0.03578947368421052'/>
+<site name='188' pos='0.02222222222222222 -0.018 0.03578947368421052'/>
+<site name='189' pos='0.03111111111111111 -0.018 0.03578947368421052'/>
+<site name='190' pos='0.04 -0.018 0.03578947368421052'/>
+<site name='191' pos='-0.04 -0.018 0.04'/>
+<site name='192' pos='-0.03111111111111111 -0.018 0.04'/>
+<site name='193' pos='-0.022222222222222223 -0.018 0.04'/>
+<site name='194' pos='-0.013333333333333336 -0.018 0.04'/>
+<site name='195' pos='-0.004444444444444445 -0.018 0.04'/>
+<site name='196' pos='0.004444444444444445 -0.018 0.04'/>
+<site name='197' pos='0.013333333333333329 -0.018 0.04'/>
+<site name='198' pos='0.02222222222222222 -0.018 0.04'/>
+<site name='199' pos='0.03111111111111111 -0.018 0.04'/>
+<site name='200' pos='0.04 -0.018 0.04'/>
+    <geom name="floor" pos="0 0 0" size="0 0 0.125" type="plane" material="MatPlane" condim="3"></geom>
+    <body name="pelvis" pos="       0 6.73556e-17      1.1" quat="0.7071067811865475 0.7071067811865475 0.0 0.0">
+      <!--light mode="trackcom" directional="false" pos="0 0 4.0" dir="0 0 -1"></light-->
+       <inertial pos=" -0.0707        0        0" mass="11.777" fullinertia="  0.1028   0.0871   0.0579        0        0        0"></inertial>
+       <body name="femur_r" pos="-0.056276 -0.07849  0.07726" quat="1.0 0.0 0.0 0.0">
+<!--用四元数处理3D旋转的优势是毋庸置疑的-->
+        <!--transfer spot-->
+           <joint name="femur_angle_r" type="hinge" pos="0 0 0" axis="-3.98373e-10 -0.0707131 -0.997497" ref="0"></joint>
+
+             <site name="Rfemurleft"pos="0 -.4 .042"/>
+        <site name="RfemurACL"pos="0.01 -.4 0.008"/>
+               <site name="RfemurPCL"pos="-0.01 -.4 -0.008"/>
+         <site name="Medialupper"pos="0 -.4 -.042"/>
+     <site name="Rleg"pos="0 0 0"/>
+
+        <inertial pos="       0    -0.17        0" mass="9.3014" fullinertia="  0.1339   0.0351   0.1412        0        0        0"></inertial>
+        <!--joint name="hip_flexion_r" type="hinge" pos="0 0 0" axis="       0       0        1" limited="true" range="-0.523599   2.0944" ref="0"></joint>
+        <joint name="hip_adduction_r" type="hinge" pos="0 0 0" axis="       1        0        0" limited="true" range="-0.872665 0.523599" ref="0"></joint>
+        <joint name="hip_rotation_r" type="hinge" pos="0 0 0" axis="       0        1        0" limited="true" range="-0.698132 0.698132" ref="0"></joint-->
+
+           <flexcomp name="FL2" pos="0 0 0" rgba="0.5 0.5 0.5 0.2" euler="0 0 0" type="mesh" file="C:\Users\yizhe\Desktop\mujoco3.1.3\model\tibiafumur\CAEmodel_Opensim_stl\r_femur.stl" scale=" 1 1 1" rigid="false">
+        <pin range="1 455"/>
+        <edge equality="true"/>
+         <contact internal="false" condim="3" solref="0.01 1" solimp=".95 .99 .0001" selfcollide="none" activelayers="1"/>
+     </flexcomp>
+
+
+
+        <body name="tibia_r" pos="-4.6e-07 -0.414425 -0.00126526" quat="1.0 7.240636975890137e-18 -9.456205735995121e-17 -2.960068750797159e-20">
+               <site name="Rknee"pos="0 0 0"/>
+          <site name="Rtibialeft"pos="0 -0.036 .042"/>
+             <site name="RtibiaACL"pos="0.01 -0.036 -0.008"/>
+                  <site name="RtibiaPCL"pos="-0.01 -0.036 0.008"/>
+            <site name="Rtibiaright"pos="0 -0.036 -.032"/>
+
+         <!--geom type="cylinder" size=".015 .01" mass="4"/>
+            <geom name="r_fibula" type="mesh" mesh="r_fibula"></geom-->
+             <flexcomp name="FL" pos="0 0 0" euler="0 0 0" type="mesh" rgba="0.5 0.5 0.5 0.2"
+                file="C:\Users\yizhe\Desktop\mujoco3.1.3\model\tibiafumur\CAEmodel_Opensim_stl\r_tibia.stl" scale="1 1 1" rigid="false">
+        <pin range="0 184"/>
+        <edge equality="true"/>
+                   <contact internal="false" condim="3" solref="0.01 1" solimp=".95 .99 .0001" selfcollide="none" activelayers="1"/>
+          </flexcomp>
+          <inertial pos="       0  -0.1867        0" mass="3.7075" fullinertia="  0.0504   0.0051   0.0511        0        0        0"></inertial>
+          <joint name="knee_angle_r_translation2" type="slide" pos="0 0 0" axis="0.992246 0.123982 -0.00878916" limited="true" range="7.69254e-11 0.006792" ref="0"></joint>
+          <joint name="knee_angle_r_translation1" type="slide" pos="0 0 0" axis="-0.124293 0.989762 -0.0701648" limited="true" range="9.53733e-08 0.00159883" ref="0"></joint>
+          <joint name="knee_angle_r" type="hinge" pos="0 0 0" axis="-3.98373e-10 -0.0707131 -0.997497" limited="true" range="       0   2.0944" ref="0"></joint>
+          <joint name="knee_angle_r_rotation2" type="hinge" pos="0 0 0" axis="0.992246 0.123982 -0.00878916" limited="true" range="-0.00167821 0.0335354" ref="0"></joint>
+          <joint name="knee_angle_r_rotation3" type="hinge" pos="0 0 0" axis="-0.124293 0.989762 -0.0701648" limited="true" range="1.08939e-08 0.262788" ref="0"></joint>
+              </body>
+         </body>
+        <!--body name="patella_r" pos="-0.00809 -0.40796        0" quat="1.0 0.0 0.0 0.0">
+          <geom name="r_patella" type="mesh" mesh="r_patella"></geom>
+          <inertial pos="  0.0018   0.0264        0" mass="0.0862" fullinertia="2.87e-06 1.311e-05 1.311e-05        0        0        0"></inertial>
+         <joint name="knee_angle_r_beta_translation2" type="slide" pos="0 0 0" axis="       0        1        0" limited="true" range="-0.0408267 -0.0108281" ref="0"></joint>
+          <joint name="knee_angle_r_beta_translation1" type="slide" pos="0 0 0" axis="       1        0        0" limited="true" range="-0.0227731 0.0524192" ref="0"></joint>
+          <joint name="knee_angle_r_beta_rotation1" type="hinge" pos="0 0 0" axis="       0        0        1" limited="true" range="-1.79241 0.010506" ref="0"></joint>
+        </body-->
+      </body>
+   <camera name="for_testing" pos="0 0 0" euler="0 0 0"></camera>
+  </worldbody>
+  <asset>
+    <mesh name="r_pelvis" file="CAEmodel_Opensim_stl/r_pelvis.stl" scale="       1        1        1"></mesh>
+          <!--mesh取名，右骨盆-->
+    <mesh name="l_pelvis" file="CAEmodel_Opensim_stl/l_pelvis.stl" scale="       1        1        1"></mesh>
+    <mesh name="sacrum" file="CAEmodel_Opensim_stl/sacrum.stl" scale="       1        1        1"></mesh>
+     <!--骶骨-->
+    <mesh name="r_femur" file="CAEmodel_Opensim_stl/r_femur.stl" scale="       1        1        1"></mesh>
+     <!--右股骨-->
+    <mesh name="r_tibia" file="CAEmodel_Opensim_stl/r_tibia.stl" scale="       1        1        1"></mesh>
+    <!--右胫骨-->
+    <mesh name="r_fibula" file="CAEmodel_Opensim_stl/r_fibula.stl" scale="       1        1        1"></mesh>
+     <!--右腓骨-->
+    <mesh name="r_talus" file="CAEmodel_Opensim_stl/r_talus.stl" scale="       1        1        1"></mesh>
+     <!--右距骨-->
+    <mesh name="r_foot" file="CAEmodel_Opensim_stl/r_foot.stl" scale="       1        1        1"></mesh>
+    <mesh name="r_bofoot" file="CAEmodel_Opensim_stl/r_bofoot.stl" scale="       1        1        1"></mesh>
+     <!--右脚趾-->
+    <mesh name="r_patella" file="CAEmodel_Opensim_stl/r_patella.stl" scale="       1        1        1"></mesh>
+     <!--右髌骨-->
+    <mesh name="l_femur" file="CAEmodel_Opensim_stl/l_femur.stl" scale="       1        1        1"></mesh>
+    <mesh name="l_tibia" file="CAEmodel_Opensim_stl/l_tibia.stl" scale="       1        1        1"></mesh>
+    <mesh name="l_fibula" file="CAEmodel_Opensim_stl/l_fibula.stl" scale="       1        1        1"></mesh>
+    <mesh name="l_talus" file="CAEmodel_Opensim_stl/l_talus.stl" scale="       1        1        1"></mesh>
+    <mesh name="l_foot" file="CAEmodel_Opensim_stl/l_foot.stl" scale="       1        1        1"></mesh>
+    <mesh name="l_bofoot" file="CAEmodel_Opensim_stl/l_bofoot.stl" scale="       1        1        1"></mesh>
+    <mesh name="l_patella" file="CAEmodel_Opensim_stl/l_patella.stl" scale="       1        1        1"></mesh>
+    <mesh name="hat_spine" file="CAEmodel_Opensim_stl/hat_spine.stl" scale="       1        1        1"></mesh>
+     <!--右股骨-->
+    <mesh name="hat_jaw" file="CAEmodel_Opensim_stl/hat_jaw.stl" scale="       1        1        1"></mesh>
+    <mesh name="hat_skull" file="CAEmodel_Opensim_stl/hat_skull.stl" scale="       1        1        1"></mesh>
+    <mesh name="hat_ribs_scap" file="CAEmodel_Opensim_stl/hat_ribs_scap.stl" scale="       1        1        1"></mesh>
+    <mesh name="humerus_rv" file="CAEmodel_Opensim_stl/humerus_rv.stl" scale="       1        1        1"></mesh>
+    <mesh name="ulna_rv" file="CAEmodel_Opensim_stl/ulna_rv.stl" scale="       1        1        1"></mesh>
+    <mesh name="radius_rv" file="CAEmodel_Opensim_stl/radius_rv.stl" scale="       1        1        1"></mesh>
+    <mesh name="pisiform_rvs" file="CAEmodel_Opensim_stl/pisiform_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="lunate_rvs" file="CAEmodel_Opensim_stl/lunate_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="scaphoid_rvs" file="CAEmodel_Opensim_stl/scaphoid_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="triquetrum_rvs" file="CAEmodel_Opensim_stl/triquetrum_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="hamate_rvs" file="CAEmodel_Opensim_stl/hamate_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="capitate_rvs" file="CAEmodel_Opensim_stl/capitate_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="trapezoid_rvs" file="CAEmodel_Opensim_stl/trapezoid_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="trapezium_rvs" file="CAEmodel_Opensim_stl/trapezium_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal2_rvs" file="CAEmodel_Opensim_stl/metacarpal2_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="index_proximal_rvs" file="CAEmodel_Opensim_stl/index_proximal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="index_medial_rvs" file="CAEmodel_Opensim_stl/index_medial_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="index_distal_rvs" file="CAEmodel_Opensim_stl/index_distal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal3_rvs" file="CAEmodel_Opensim_stl/metacarpal3_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="middle_proximal_rvs" file="CAEmodel_Opensim_stl/middle_proximal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="middle_medial_rvs" file="CAEmodel_Opensim_stl/middle_medial_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="middle_distal_rvs" file="CAEmodel_Opensim_stl/middle_distal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal4_rvs" file="CAEmodel_Opensim_stl/metacarpal4_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="ring_proximal_rvs" file="CAEmodel_Opensim_stl/ring_proximal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="ring_medial_rvs" file="CAEmodel_Opensim_stl/ring_medial_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="ring_distal_rvs" file="CAEmodel_Opensim_stl/ring_distal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal5_rvs" file="CAEmodel_Opensim_stl/metacarpal5_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="little_proximal_rvs" file="CAEmodel_Opensim_stl/little_proximal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="little_medial_rvs" file="CAEmodel_Opensim_stl/little_medial_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="little_distal_rvs" file="CAEmodel_Opensim_stl/little_distal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal1_rvs" file="CAEmodel_Opensim_stl/metacarpal1_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="thumb_proximal_rvs" file="CAEmodel_Opensim_stl/thumb_proximal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="thumb_distal_rvs" file="CAEmodel_Opensim_stl/thumb_distal_rvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="humerus_lv" file="CAEmodel_Opensim_stl/humerus_lv.stl" scale="       1        1        1"></mesh>
+    <mesh name="ulna_lv" file="CAEmodel_Opensim_stl/ulna_lv.stl" scale="       1        1        1"></mesh>
+    <mesh name="radius_lv" file="CAEmodel_Opensim_stl/radius_lv.stl" scale="       1        1        1"></mesh>
+    <mesh name="pisiform_lvs" file="CAEmodel_Opensim_stl/pisiform_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="lunate_lvs" file="CAEmodel_Opensim_stl/lunate_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="scaphoid_lvs" file="CAEmodel_Opensim_stl/scaphoid_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="triquetrum_lvs" file="CAEmodel_Opensim_stl/triquetrum_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="hamate_lvs" file="CAEmodel_Opensim_stl/hamate_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="capitate_lvs" file="CAEmodel_Opensim_stl/capitate_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="trapezoid_lvs" file="CAEmodel_Opensim_stl/trapezoid_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="trapezium_lvs" file="CAEmodel_Opensim_stl/trapezium_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal2_lvs" file="CAEmodel_Opensim_stl/metacarpal2_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="index_proximal_lvs" file="CAEmodel_Opensim_stl/index_proximal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="index_medial_lvs" file="CAEmodel_Opensim_stl/index_medial_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="index_distal_lvs" file="CAEmodel_Opensim_stl/index_distal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal3_lvs" file="CAEmodel_Opensim_stl/metacarpal3_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="middle_proximal_lvs" file="CAEmodel_Opensim_stl/middle_proximal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="middle_medial_lvs" file="CAEmodel_Opensim_stl/middle_medial_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="middle_distal_lvs" file="CAEmodel_Opensim_stl/middle_distal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal4_lvs" file="CAEmodel_Opensim_stl/metacarpal4_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="ring_proximal_lvs" file="CAEmodel_Opensim_stl/ring_proximal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="ring_medial_lvs" file="CAEmodel_Opensim_stl/ring_medial_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="ring_distal_lvs" file="CAEmodel_Opensim_stl/ring_distal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal5_lvs" file="CAEmodel_Opensim_stl/metacarpal5_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="little_proximal_lvs" file="CAEmodel_Opensim_stl/little_proximal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="little_medial_lvs" file="CAEmodel_Opensim_stl/little_medial_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="little_distal_lvs" file="CAEmodel_Opensim_stl/little_distal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="metacarpal1_lvs" file="CAEmodel_Opensim_stl/metacarpal1_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="thumb_proximal_lvs" file="CAEmodel_Opensim_stl/thumb_proximal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <mesh name="thumb_distal_lvs" file="CAEmodel_Opensim_stl/thumb_distal_lvs.stl" scale="    0.85     0.85     0.85"></mesh>
+    <texture name="texplane" type="2d" builtin="checker" rgb2=".2 .3 .4" rgb1=".1 .2 .3" width="100" height="100"></texture>
+    <material name="MatPlane" reflectance="0.2" texture="texplane" texrepeat="1 1" texuniform="true"></material>
+  </asset>
+
+<!--tendon>
+  <spatial name="Rleglefttondon"   solreflimit=".01 2"  springlength="-1 -1" stiffness="10" damping="100">
+    <site site="Rfemurleft"/>
+    <site site="Rtibialeft"/>
+      </spatial>
+    <spatial name="Rlegrighttondon"  solreflimit=".01 2"  springlength="-1 -1" stiffness="34120" damping="100">
+    <site site="Medialupper"/>
+    <site site="Mediallower"/>
+  </spatial>
+   <spatial name="RACL" solreflimit=".01 2"  springlength="-1 -1" stiffness="10" damping="100">
+    <site site="RfemurACL"/>
+    <site site="RtibiaACL"/>
+     </spatial>
+   <spatial name="RPCL"  solreflimit=".01 2"  springlength="-1 -1" stiffness="10" damping="100">
+    <site site="RfemurPCL"/>
+    <site site="RtibiaPCL"/>
+    </spatial>
+</tendon-->
+
+      <!--tendonpos tendon="Rleglefttondon"/>
+      <tendonvel tendon="Rleglefttondon"/>
+      <force site="Lkneecontact"/>
+<force site='1'/>
+<force site='2'/>
+<force site='3'/>
+<force site='4'/>
+<force site='5'/>
+<force site='6'/>
+<force site='7'/>
+<force site='8'/>
+<force site='9'/>
+<force site='10'/>
+<force site='11'/>
+<force site='12'/>
+<force site='13'/>
+<force site='14'/>
+<force site='15'/>
+<force site='16'/>
+<force site='17'/>
+<force site='18'/>
+<force site='19'/>
+<force site='20'/>
+<force site='21'/>
+<force site='22'/>
+<force site='23'/>
+<force site='24'/>
+<force site='25'/>
+<force site='26'/>
+<force site='27'/>
+<force site='28'/>
+<force site='29'/>
+<force site='30'/>
+<force site='31'/>
+<force site='32'/>
+<force site='33'/>
+<force site='34'/>
+<force site='35'/>
+<force site='36'/>
+<force site='37'/>
+<force site='38'/>
+<force site='39'/>
+<force site='40'/>
+<force site='41'/>
+<force site='42'/>
+<force site='43'/>
+<force site='44'/>
+<force site='45'/>
+<force site='46'/>
+<force site='47'/>
+<force site='48'/>
+<force site='49'/>
+<force site='50'/>
+<force site='51'/>
+<force site='52'/>
+<force site='53'/>
+<force site='54'/>
+<force site='55'/>
+<force site='56'/>
+<force site='57'/>
+<force site='58'/>
+<force site='59'/>
+<force site='60'/>
+<force site='61'/>
+<force site='62'/>
+<force site='63'/>
+<force site='64'/>
+<force site='65'/>
+<force site='66'/>
+<force site='67'/>
+<force site='68'/>
+<force site='69'/>
+<force site='70'/>
+<force site='71'/>
+<force site='72'/>
+<force site='73'/>
+<force site='74'/>
+<force site='75'/>
+<force site='76'/>
+<force site='77'/>
+<force site='78'/>
+<force site='79'/>
+<force site='80'/>
+<force site='81'/>
+<force site='82'/>
+<force site='83'/>
+<force site='84'/>
+<force site='85'/>
+<force site='86'/>
+<force site='87'/>
+<force site='88'/>
+<force site='89'/>
+<force site='90'/>
+<force site='91'/>
+<force site='92'/>
+<force site='93'/>
+<force site='94'/>
+<force site='95'/>
+<force site='96'/>
+<force site='97'/>
+<force site='98'/>
+<force site='99'/>
+<force site='100'/>
+<force site='101'/>
+<force site='102'/>
+<force site='103'/>
+<force site='104'/>
+<force site='105'/>
+<force site='106'/>
+<force site='107'/>
+<force site='108'/>
+<force site='109'/>
+<force site='110'/>
+<force site='111'/>
+<force site='112'/>
+<force site='113'/>
+<force site='114'/>
+<force site='115'/>
+<force site='116'/>
+<force site='117'/>
+<force site='118'/>
+<force site='119'/>
+<force site='120'/>
+<force site='121'/>
+<force site='122'/>
+<force site='123'/>
+<force site='124'/>
+<force site='125'/>
+<force site='126'/>
+<force site='127'/>
+<force site='128'/>
+<force site='129'/>
+<force site='130'/>
+<force site='131'/>
+<force site='132'/>
+<force site='133'/>
+<force site='134'/>
+<force site='135'/>
+<force site='136'/>
+<force site='137'/>
+<force site='138'/>
+<force site='139'/>
+<force site='140'/>
+<force site='141'/>
+<force site='142'/>
+<force site='143'/>
+<force site='144'/>
+<force site='145'/>
+<force site='146'/>
+<force site='147'/>
+<force site='148'/>
+<force site='149'/>
+<force site='150'/>
+<force site='151'/>
+<force site='152'/>
+<force site='153'/>
+<force site='154'/>
+<force site='155'/>
+<force site='156'/>
+<force site='157'/>
+<force site='158'/>
+<force site='159'/>
+<force site='160'/>
+<force site='161'/>
+<force site='162'/>
+<force site='163'/>
+<force site='164'/>
+<force site='165'/>
+<force site='166'/>
+<force site='167'/>
+<force site='168'/>
+<force site='169'/>
+<force site='170'/>
+<force site='171'/>
+<force site='172'/>
+<force site='173'/>
+<force site='174'/>
+<force site='175'/>
+<force site='176'/>
+<force site='177'/>
+<force site='178'/>
+<force site='179'/>
+<force site='180'/>
+<force site='181'/>
+<force site='182'/>
+<force site='183'/>
+<force site='184'/>
+<force site='185'/>
+<force site='186'/>
+<force site='187'/>
+<force site='188'/>
+<force site='189'/>
+<force site='190'/>
+<force site='191'/>
+<force site='192'/>
+<force site='193'/>
+<force site='194'/>
+<force site='195'/>
+<force site='196'/>
+<force site='197'/>
+<force site='198'/>
+<force site='199'/>
+<force site='200'/-->
+
+    <!--actuator>
+    <general name="lumbar_ext" joint="lumbar_extension" class="motor"></general>
+    <general name="lumbar_bend" joint="lumbar_bending" class="motor"></general>
+    <general name="lumbar_rot" joint="lumbar_rotation" class="motor"></general>
+    <general name="shoulder_flex_r" joint="arm_flex_r" class="motor"></general>
+    <general name="shoulder_add_r" joint="arm_add_r" class="motor"></general>
+    <general name="shoulder_rot_r" joint="arm_rot_r" class="motor"></general>
+    <general name="elbow_flex_r" joint="elbow_flex_r" class="motor"></general>
+    <general name="pro_sup_r" joint="pro_sup_r" class="motor"></general>
+    <general name="wrist_flex_r" joint="wrist_flex_r" class="motor"></general>
+    <general name="wrist_dev_r" joint="wrist_dev_r" class="motor"></general>
+    <general name="shoulder_flex_l" joint="arm_flex_l" class="motor"></general>
+    <general name="shoulder_add_l" joint="arm_add_l" class="motor"></general>
+    <general name="shoulder_rot_l" joint="arm_rot_l" class="motor"></general>
+    <general name="elbow_flex_l" joint="elbow_flex_l" class="motor"></general>
+    <general name="pro_sup_l" joint="pro_sup_l" class="motor"></general>
+    <general name="wrist_flex_l" joint="wrist_flex_l" class="motor"></general>
+    <general name="wrist_dev_l" joint="wrist_dev_l" class="motor"></general>
+        <general name="a" joint="knee_angle_r" class="motor"></general>
+     <general name="b" joint="knee_angle_r_translation2" class="motor"></general>
+     <general name="c" joint="knee_angle_r_translation1" class="motor"></general>
+     <general name="d" joint="knee_angle_r_rotation2" class="motor"></general>
+  </actuator-->
+  <equality>
+    <!--joint name="knee_angle_r_translation2_constraint" active="true" joint1="knee_angle_r_translation2" joint2="knee_angle_r" polycoef="7.69254e-11 0.00587971 -0.00125622 -2.61846e-06 6.24355e-07" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_r_translation1_constraint" active="true" joint1="knee_angle_r_translation1" joint2="knee_angle_r" polycoef="9.53733e-08 0.00312879 -0.00230804 0.000561561 5.68366e-07" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_r_rotation2_constraint" active="true" joint1="knee_angle_r_rotation2" joint2="knee_angle_r" polycoef="-1.47325e-08   0.0791 -0.0328478 -0.0252183 0.0108321" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_r_rotation3_constraint" active="true" joint1="knee_angle_r_rotation3" joint2="knee_angle_r" polycoef="1.08939e-08 0.369499 -0.169478 0.0251643 3.50498e-07" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_r_beta_translation2_constraint" active="true" joint1="knee_angle_r_beta_translation2" joint2="knee_angle_r" polycoef="-0.0108281 -0.0487847 0.00927644 0.0131673 -0.00349673" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_r_beta_translation1_constraint" active="true" joint1="knee_angle_r_beta_translation1" joint2="knee_angle_r" polycoef="0.0524192 -0.0150188 -0.0340522 0.0133393 -0.000879151" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_r_beta_rotation1_constraint" active="true" joint1="knee_angle_r_beta_rotation1" joint2="knee_angle_r" polycoef="0.010506 0.0247615 -1.31647 0.716337 -0.138302" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="subtalar_angle_r_constraint" active="true" joint1="subtalar_angle_r" polycoef="       0        0        0        0        0"></joint>
+    <joint name="mtp_angle_r_constraint" active="true" joint1="mtp_angle_r" polycoef="       0        0        0        0        0"></joint>
+    <joint name="knee_angle_l_translation2_constraint" active="true" joint1="knee_angle_l_translation2" joint2="knee_angle_l" polycoef="-7.69254e-11 -0.00587971 0.00125622 2.61846e-06 -6.24355e-07" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_l_translation1_constraint" active="true" joint1="knee_angle_l_translation1" joint2="knee_angle_l" polycoef="9.53733e-08 0.00312879 -0.00230804 0.000561561 5.68366e-07" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_l_rotation2_constraint" active="true" joint1="knee_angle_l_rotation2" joint2="knee_angle_l" polycoef="-1.47325e-08   0.0791 -0.0328478 -0.0252183 0.0108321" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_l_rotation3_constraint" active="true" joint1="knee_angle_l_rotation3" joint2="knee_angle_l" polycoef="-1.08939e-08 -0.369499 0.169478 -0.0251643 -3.50498e-07" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_l_beta_translation2_constraint" active="true" joint1="knee_angle_l_beta_translation2" joint2="knee_angle_l" polycoef="-0.0108281 -0.0487847 0.00927644 0.0131673 -0.00349673" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_l_beta_translation1_constraint" active="true" joint1="knee_angle_l_beta_translation1" joint2="knee_angle_l" polycoef="0.0524192 -0.0150188 -0.0340522 0.0133393 -0.000879151" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="knee_angle_l_beta_rotation1_constraint" active="true" joint1="knee_angle_l_beta_rotation1" joint2="knee_angle_l" polycoef="0.010506 0.0247615 -1.31647 0.716337 -0.138302" solimp="0.9999 0.9999 0.001 0.5 2"></joint>
+    <joint name="subtalar_angle_l_constraint" active="true" joint1="subtalar_angle_l" polycoef="       0        0        0        0        0"></joint>
+    <joint name="mtp_angle_l_constraint" active="true" joint1="mtp_angle_l" polycoef="       0        0        0        0        0"></joint>
+    <joint name="wrist_flex_r_constraint" active="true" joint1="wrist_flex_r" polycoef="       0        0        0        0        0"></joint>
+    <joint name="wrist_dev_r_constraint" active="true" joint1="wrist_dev_r" polycoef="       0        0        0        0        0"></joint>
+    <joint name="wrist_flex_l_constraint" active="true" joint1="wrist_flex_l" polycoef="       0        0        0        0        0"></joint>
+    <joint name="wrist_dev_l_constraint" active="true" joint1="wrist_dev_l" polycoef="       0        0        0        0        0"></joint>
+    <weld name="origin_to_worldbody" body1="pelvis" active="false"></weld-->
+  </equality>
+</mujoco>
