@@ -4,6 +4,7 @@ A python algrithom that can show knee joint contact scatter points in both 3d po
 
 **Variable**
 ww:   All the mean value of contact points
+
 w:    Walk through the length of contact points(d.ncon)
 normal_force_magnitude:  the mean value of a contact
 
