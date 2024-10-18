@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Sep 13 12:11:24 2024
-
-@author: yizhe
-"""
 import time
 import numpy as np
 import mujoco
@@ -22,10 +16,10 @@ from mpl_toolkits.mplot3d import Axes3D
 from scipy.interpolate import griddata
 from scipy.spatial import Delaunay
 from scipy.signal import butter, filtfilt
-def file1(filepath,a,b):        #读取excel
+def Read_data(filepath,a,b):       
     df = pd.read_excel(filepath)
-    kneedata = df.iloc[a:, b].values  # iloc[1:] 表示从第二行开始（即去掉第一个数据），8 表示第9列（因为索引从0开始）
-    return kneedata #返回第11列的第二个数据以后的一列数据
+    kneedata = df.iloc[a:, b].values  
+    return kneedata 
 def butter_lowpass(cutoff, fs, order=5):
     nyquist = 0.5 * fs
     normal_cutoff = cutoff / nyquist
@@ -48,19 +42,18 @@ def getvel(pos):
     return np.concatenate([[0], np.diff(pos, 1)]).flatten()
 def printjointid():
     for geom_id in range(m.njnt):
-        geom_name =mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_JOINT, geom_id)  # 解码为字符串
+        geom_name =mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_JOINT, geom_id)
         print(f"ID: {geom_id}, Name: {geom_name}")
         
 import warnings
-# 忽略所有警告
 warnings.filterwarnings("ignore")
 
 rad=np.pi/180
-m = mujoco.MjModel.from_xml_path(r"C:/Users\yizhe\Desktop\mujoco3.1.3\model\pidtest\10.18tendonpid.xml")
+m = mujoco.MjModel.from_xml_path("10.18tendonpid.xml")
 d = mujoco.MjData(m)
-kneedata = file1(r"C:\Users\yizhe\Desktop\mujoco3.1.3\model\tibiafumur\Jointangle.xls",1,10)  # iloc[1:] 表示从第二行开始（即去掉第一个数据），8 表示第9列（因为索引从0开始）
+kneedata = Read_data("Jointangle.xls",1,10)  
 kneedata=np.concatenate((kneedata, kneedata, kneedata, kneedata))*rad
-hipdata= file1(r"C:\Users\yizhe\Desktop\mujoco3.1.3\model\tibiafumur\Jointangle.xls",1,7)  # iloc[1:] 表示从第二行开始（即去掉第一个数据），8 表示第9列（因为索引从0开始）
+hipdata= Read_data("Jointangle.xls",1,7)  
 hipdata=np.concatenate((hipdata,hipdata, hipdata,hipdata))*rad
 
   
@@ -70,8 +63,8 @@ fs = 100  # 采样频率
 kneedata = lowpass_filter(kneedata, cutoff, fs, order)
 hipdata = lowpass_filter(hipdata, cutoff, fs, order)
 
-# qfrc_kneedata = file1(r"C:\Users\yizhe\Desktop\mujoco3.1.3\model\pidtest\qfrc_kneedata.xlsx",1,0)
-# qfrc_femurdata = file1(r"C:\Users\yizhe\Desktop\mujoco3.1.3\model\pidtest\qfrc_hipdata.xlsx",1,0)
+# qfrc_kneedata = Read_data("qfrc_kneedata.xlsx",1,0)
+# qfrc_femurdata = Read_data("qfrc_hipdata.xlsx",1,0)
 
 # 绘制输入角度图
 x = np.arange(len(kneedata))

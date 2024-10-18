@@ -257,7 +257,7 @@
         <joint name="hip_adduction_r" type="hinge" pos="0 0 0" axis="       1        0        0" limited="true" range="-0.872665 0.523599" ref="0"></joint>
         <joint name="hip_rotation_r" type="hinge" pos="0 0 0" axis="       0        1        0" limited="true" range="-0.698132 0.698132" ref="0"></joint-->
 
- <flexcomp name="FL2" pos="0 0 0" rgba="0.5 0.5 0.5 0.2" euler="0 0 0" type="mesh" file="C:\Users\yizhe\Desktop\mujoco3.1.3\model\tibiafumur\CAEmodel_Opensim_stl\r_femur.stl" scale=" 1 1 1" rigid="false">
+ <flexcomp name="FL2" pos="0 0 0" rgba="0.5 0.5 0.5 0.2" euler="0 0 0" type="mesh" file="CAEmodel_Opensim_stl\r_femur.stl" scale=" 1 1 1" rigid="false">
         <pin range="0 455"/>
         <edge equality="true"/>
          <contact internal="false" condim="3" solref="0.01 1" solimp=".95 .99 .0001" selfcollide="none" activelayers="1"/>
@@ -276,7 +276,7 @@
          <!--geom type="cylinder" size=".015 .01" mass="4"/>
             <geom name="r_fibula" type="mesh" mesh="r_fibula"></geom-->
              <flexcomp name="FL" pos="0 0 0" euler="0 0 0" type="mesh" rgba="0.5 0.5 0.5 0.2"
-                file="C:\Users\yizhe\Desktop\mujoco3.1.3\model\tibiafumur\CAEmodel_Opensim_stl\r_tibia.stl" scale="1 1 1" rigid="true">
+                file="CAEmodel_Opensim_stl\r_tibia.stl" scale="1 1 1" rigid="true">
         <pin range="0 185"/>
         <edge equality="true"/>
                    <contact internal="false" condim="3" solref="0.01 1" solimp=".95 .99 .0001" selfcollide="none" activelayers="1"/>
