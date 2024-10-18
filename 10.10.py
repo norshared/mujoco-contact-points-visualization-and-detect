@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Sep 13 12:11:24 2024
 
-@author: yizhe
-"""
 import time
 import numpy as np
 import mujoco
