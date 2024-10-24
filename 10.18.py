@@ -43,7 +43,7 @@ def getacc(pos):
     return np.concatenate([[0], np.diff(pos, 2), [0]]).flatten()
 def getvel(pos):
     return np.concatenate([[0], np.diff(pos, 1)]).flatten()
-def printjointid():
+def printjointid(m):
     for geom_id in range(m.njnt):
         geom_name =mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_JOINT, geom_id)
         print(f"ID: {geom_id}, Name: {geom_name}")      
